@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render
 from .form import DataForm
 from .models import Data
 # Create your views here.
@@ -37,7 +37,7 @@ def delete(request, id):
 
 
 def edit(request, id):
-    data = get_object_or_404(Data, id=id)
+    data =  Data.objects.get(id=id)
     if request.method == 'POST':
         form = DataForm(request.POST, instance=data)
         if form.is_valid():
